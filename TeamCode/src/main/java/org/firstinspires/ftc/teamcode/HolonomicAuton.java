@@ -93,8 +93,8 @@ public class HolonomicAuton extends LinearOpMode{
         frontRight = hMap.dcMotor.get("front_right");
         backLeft = hMap.dcMotor.get("back_left");
         backRight = hMap.dcMotor.get("back_right");
-        outTake = hMap.dcMotor.get("outTake");
-        inTake = hMap.dcMotor.get("inTake");
+        outTake = hMap.dcMotor.get("shooter");
+        inTake = hMap.dcMotor.get("intake");
         buttonServo = hMap.servo.get("buttonServo");
 
         frontLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
