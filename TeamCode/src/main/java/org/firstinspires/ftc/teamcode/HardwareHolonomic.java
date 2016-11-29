@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 /**
@@ -13,6 +14,9 @@ public class HardwareHolonomic {
     public DcMotor frontRight;
     public DcMotor backLeft;
     public DcMotor backRight;
+    public DcMotor shooter;
+    public DcMotor intake;
+    public Servo servo;
 
     private HardwareMap hMap;
     private ElapsedTime period = new ElapsedTime();
@@ -28,6 +32,9 @@ public class HardwareHolonomic {
         frontRight = hMap.dcMotor.get("front_right");
         backLeft = hMap.dcMotor.get("back_left");
         backRight = hMap.dcMotor.get("back_right");
+        shooter = hMap.dcMotor.get("shooter");
+        intake = hMap.dcMotor.get("intake");
+        servo = hMap.servo.get("servo");
 
         frontLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         frontRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);

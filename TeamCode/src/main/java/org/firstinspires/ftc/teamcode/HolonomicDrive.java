@@ -55,6 +55,19 @@ public class HolonomicDrive extends OpMode {
         robot.backLeft.setPower(Range.clip(-x + y, 1, 1));
         robot.backRight.setPower(Range.clip(-x - y, 1, 1));
 
+        if (gamepad2.left_bumper)
+            robot.intake.setPower(-.75);
+        else if (gamepad2.right_bumper)
+            robot.intake.setPower(.75);
+
+        if (gamepad2.a) robot.servo.setPosition(90);
+        else robot.servo.setPosition(0);
+
+        if (gamepad2.x) robot.shooter.setPower(1);
+        else robot.shooter.setPower(0);
+
+
+
     }
     //////////////////////////
     private double scaleInput(double input){
