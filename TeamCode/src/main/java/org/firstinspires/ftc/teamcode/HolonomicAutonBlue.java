@@ -103,6 +103,8 @@ public class HolonomicAutonBlue extends LinearOpMode{
 
         buttonServo.setPosition(0.5);
 
+        sleep(10000);
+
         move(0.9,0,1);
         move(-0.9,0,0.5);
         fire();

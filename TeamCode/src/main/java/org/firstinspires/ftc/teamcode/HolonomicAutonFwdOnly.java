@@ -2,7 +2,6 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
@@ -14,8 +13,8 @@ import com.qualcomm.robotcore.util.Range;
  */
 
 
-@Autonomous(name="Beaconless Red", group="Autonomous Drive")
-public class HolonomicAuton extends LinearOpMode{
+@Autonomous(name="Forward", group="Autonomous Drive")
+public class HolonomicAutonFwdOnly extends LinearOpMode{
 
     public DcMotor frontLeft;
     public DcMotor frontRight;
@@ -106,11 +105,7 @@ public class HolonomicAuton extends LinearOpMode{
 
         sleep(10000);
 
-        move(0.9,0,1);
-        move(-0.9,0,0.5);
-        fire();
-        move(0,-0.9,2);
-        move(-1,0,1);
+        move(0.9,0,3);
 
     }
 
