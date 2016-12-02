@@ -23,7 +23,7 @@ public class HolonomicAuton extends LinearOpMode{
     public DcMotor backRight;
     public DcMotor outTake;
     public DcMotor inTake;
-    public Servo buttonServo;
+    //public Servo //buttonServo;
 
     private HardwareMap hMap;
     private ElapsedTime period = new ElapsedTime();
@@ -95,14 +95,14 @@ public class HolonomicAuton extends LinearOpMode{
         backRight = hMap.dcMotor.get("back_right");
         outTake = hMap.dcMotor.get("outTake");
         inTake = hMap.dcMotor.get("inTake");
-        buttonServo = hMap.servo.get("buttonServo");
+        //buttonServo = hMap.servo.get("//buttonServo");
 
         frontLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         frontRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         backLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         backRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
-        buttonServo.setPosition(0.5);
+        //buttonServo.setPosition(0.5);
 
         sleep(10000);
 

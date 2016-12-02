@@ -16,7 +16,7 @@ public class HardwareHolonomic {
     public DcMotor backRight;
     public DcMotor shooter;
     public DcMotor intake;
-    public Servo servo;
+    //public Servo servo;
 
     private HardwareMap hMap;
     private ElapsedTime period = new ElapsedTime();
@@ -34,7 +34,7 @@ public class HardwareHolonomic {
         backRight = hMap.dcMotor.get("back_right");
         shooter = hMap.dcMotor.get("shooter");
         intake = hMap.dcMotor.get("intake");
-        servo = hMap.servo.get("servo");
+        //servo = hMap.servo.get("servo");
 
         frontLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         frontRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
