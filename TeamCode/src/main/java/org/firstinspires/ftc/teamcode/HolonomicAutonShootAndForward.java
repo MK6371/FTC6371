@@ -14,7 +14,7 @@ import com.qualcomm.robotcore.util.Range;
 
 
 @Autonomous(name="Corner Shot", group="Autonomous Drive")
-public class HolonomicAutonForwardAndBack extends LinearOpMode{
+public class HolonomicAutonShootAndForward extends LinearOpMode{
 
     public DcMotor frontLeft;
     public DcMotor frontRight;
@@ -105,9 +105,9 @@ public class HolonomicAutonForwardAndBack extends LinearOpMode{
 
         sleep(10000);
 
-        move(0.9,0,1);
-        move(-0.9,0,0.5);
         fire();
+        move(0.9,0,1);
+        //move(-0.9,0,0.5);
 
     }
 
