@@ -48,7 +48,7 @@ public class HolonomicDrive extends OpMode {
         */
 
         /* 2 joysticks: left controls y-axis movement and right controls x-axis movement (add components) */
-        y = gamepad1.left_stick_y;
+        y = -gamepad1.left_stick_y;
         x = gamepad1.right_stick_x;
         robot.frontLeft.setPower(Range.clip(x + y, 1, 1));
         robot.frontRight.setPower(Range.clip(x - y, 1, 1));
