@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.opmode;
+package org.firstinspires.ftc.teamcode.opmode.teleop;
 
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
@@ -7,8 +7,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
 
-import org.firstinspires.ftc.teamcode.drive.Holonomic;
-import org.firstinspires.ftc.teamcode.hardware.HardwareHolonomic;
+import org.firstinspires.ftc.teamcode.HolonomicRobot;
 
 /**
  * Created by 292486 on 9/20/2016.
@@ -17,7 +16,7 @@ import org.firstinspires.ftc.teamcode.hardware.HardwareHolonomic;
 @TeleOp(name = "Holonomic Drive", group = "Teleop Drive")
 public class HolonomicDrive extends OpMode {
 
-    HardwareHolonomic robot = new HardwareHolonomic();
+    HolonomicRobot robot = new HolonomicRobot();
     ElapsedTime timer = new ElapsedTime(ElapsedTime.Resolution.MILLISECONDS);
 
     private double y, x, l, r;
@@ -52,7 +51,7 @@ public class HolonomicDrive extends OpMode {
             r /= 2.0;
         }
 
-        Holonomic.arcade(y, x, l, r, robot);    //Triggers doing wrong turn, fix it later!!
+        robot.arcade(y, x, l, r);
 
         if(gamepad2.x)
         {
@@ -75,9 +74,5 @@ public class HolonomicDrive extends OpMode {
         } else {
             robot.intake.setPower(0);
         }
-
-        /*if(gamepad2.a) robot.servo.setPosition(90);
-        else robot.servo.setPosition(0);
-        */
     }
 }

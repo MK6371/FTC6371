@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.opmode;
+package org.firstinspires.ftc.teamcode.opmode.misc;
 
 import android.app.Activity;
 import android.graphics.Color;
