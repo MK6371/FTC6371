@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.test;
 import android.util.Log;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
@@ -33,7 +34,8 @@ netsh wlan start hostednetwork
 DIRECT-xx-YourRobotName
  */
 
-@Autonomous
+@Autonomous(name="Vuforia Just Camera", group="vision")
+@Disabled
 public class VuforiaTestNoRobot extends LinearOpMode {
 
     VuforiaLocalizer vuforia;

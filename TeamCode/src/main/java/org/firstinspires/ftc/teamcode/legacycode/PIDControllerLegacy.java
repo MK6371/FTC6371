@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 /**
  * Created by 292486 on 12/2/2015.
  */
-public class PIDController {
+public class PIDControllerLegacy {
 
     DcMotor leftMotor;  //Get the front left and right motors when instantiating a controller
     DcMotor rightMotor;
@@ -19,7 +19,7 @@ public class PIDController {
     double correction, maxIntegral, maxCorrection ,tolerance;  //Limits and output
     double lastTime, deltaTime;
 
-    public PIDController(DcMotor leftMotor, DcMotor rightMotor, Boolean debug){
+    public PIDControllerLegacy(DcMotor leftMotor, DcMotor rightMotor, Boolean debug){
         this.leftMotor = leftMotor;
         this.rightMotor = rightMotor;
 
@@ -64,7 +64,7 @@ public class PIDController {
 
         if(debug)
         {
-            TMUtil.formatDLog("PIDController", "Variables: t%d e%d i%d d%d c%d", deltaTime, error, integral, derivative, correction);
+            TMUtil.formatDLog("PIDControllerLegacy", "Variables: t%d e%d i%d d%d c%d", deltaTime, error, integral, derivative, correction);
         }
 
         lastError = error;

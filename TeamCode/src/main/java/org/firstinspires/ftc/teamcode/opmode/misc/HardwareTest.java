@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.graphics.Color;
 import android.view.View;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -16,7 +17,8 @@ import java.util.ArrayList;
  * Created by 292486 on 11/30/2016.
  */
 
-@TeleOp(name = "Hardware Diagnostics")
+@TeleOp(name = "Hardware Diagnostics", group="misc")
+@Disabled
 public class HardwareTest extends OpMode {
 
     private HolonomicRobot robot = new HolonomicRobot();

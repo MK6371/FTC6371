@@ -9,7 +9,7 @@ import org.firstinspires.ftc.teamcode.HolonomicRobot;
  * Created by 292486 on 1/31/2017.
  */
 
-@TeleOp
+@TeleOp(name="Configuration Test", group="misc")
 public class ConfigurationTest extends OpMode {
 
     HolonomicRobot robot = new HolonomicRobot();
@@ -17,7 +17,7 @@ public class ConfigurationTest extends OpMode {
     @Override
     public void init() {
         robot.init(hardwareMap);
-        robot.gyro.calibrate();
+        //robot.gyro.calibrate();
     }
 
     @Override

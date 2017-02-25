@@ -4,21 +4,22 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.HolonomicRobot;
-
-import java.util.Arrays;
+import org.firstinspires.ftc.teamcode.utils.PIDController;
 
 /**
  * Created by 292486 on 1/4/2017.
  */
 
-@Autonomous
+@Autonomous(name="Holonomic PID", group="misc")
+@Disabled
 public class HolonomicPIDTest extends LinearOpMode{
 
-    private static void moveForwardWithControl(double speed, HolonomicRobot robot, PIDTest frontControl, PIDTest backControl) {
+    private static void moveForwardWithControl(double speed, HolonomicRobot robot, PIDController frontControl, PIDController backControl) {
         ElapsedTime timer = new ElapsedTime(ElapsedTime.Resolution.SECONDS);
 
         frontControl.resetPID();
@@ -32,8 +33,8 @@ public class HolonomicPIDTest extends LinearOpMode{
         }
     }
 
-    PIDTest frontController;
-    PIDTest backController;
+    PIDController frontController;
+    PIDController backController;
     HolonomicRobot robot;
 
     @Override
@@ -41,8 +42,8 @@ public class HolonomicPIDTest extends LinearOpMode{
         robot = new HolonomicRobot();
         robot.init(hardwareMap);
 
-        frontController = new PIDTest(hardwareMap, robot.frontLeft, robot.frontRight);
-        backController = new PIDTest(hardwareMap, robot.backLeft, robot.backRight);
+        frontController = new PIDController(hardwareMap, robot.frontLeft, robot.frontRight);
+        backController = new PIDController(hardwareMap, robot.backLeft, robot.backRight);
         frontController.setMaxCorrection(0.25);
         backController.setMaxCorrection(0.25);
 

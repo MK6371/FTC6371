@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.opmode.teleop;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.HolonomicRobot;
 
@@ -8,6 +9,7 @@ import org.firstinspires.ftc.teamcode.HolonomicRobot;
  * Created by 292486 on 2/9/2017.
  */
 
+@TeleOp(name="Driver Tank Strafe", group="teleop")
 public class HolonomicTankStrafe extends OpMode {
 
     HolonomicRobot robot = new HolonomicRobot();
@@ -38,11 +40,11 @@ public class HolonomicTankStrafe extends OpMode {
 
         if(gamepad1.right_bumper)
         {
+            robot.shooterRed.setPower(-0.75);
+            robot.shooterBlue.setPower(-0.75);
+        } else if(gamepad1.left_bumper) {
             robot.shooterRed.setPower(0.75);
             robot.shooterBlue.setPower(0.75);
-        } else if(gamepad1.left_bumper) {
-            robot.shooterRed.setPower(-.5);
-            robot.shooterBlue.setPower(-.5);
         } else {
             robot.shooterRed.setPower(0);
             robot.shooterBlue.setPower(0);

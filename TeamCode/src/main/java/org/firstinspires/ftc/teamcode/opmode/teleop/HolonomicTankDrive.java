@@ -10,7 +10,7 @@ import org.firstinspires.ftc.teamcode.HolonomicRobot;
  * Created by 292486 on 1/12/2017.
  */
 
-@TeleOp
+@TeleOp(name="Tank Driver", group="teleop")
 public class HolonomicTankDrive extends OpMode {
 
     HolonomicRobot robot = new HolonomicRobot();
@@ -42,13 +42,13 @@ public class HolonomicTankDrive extends OpMode {
             r /= 2.0;
         }
 
-        if(gamepad1.right_bumper)
+        if(gamepad1.left_bumper)
         {
-            robot.shooterRed.setPower(0.75);
-            robot.shooterBlue.setPower(0.75);
-        } else if(gamepad1.left_bumper) {
-            robot.shooterRed.setPower(-.5);
-            robot.shooterBlue.setPower(-.5);
+            robot.shooterRed.setPower(-.75);
+            robot.shooterBlue.setPower(-.75);
+        } else if(gamepad1.right_bumper) {
+            robot.shooterRed.setPower(.75);
+            robot.shooterBlue.setPower(.75);
         } else {
             robot.shooterRed.setPower(0);
             robot.shooterBlue.setPower(0);

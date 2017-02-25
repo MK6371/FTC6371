@@ -10,7 +10,7 @@ import org.firstinspires.ftc.teamcode.HolonomicRobot;
 /**
  * Created by 292486 on 10/13/2016.
  */
-@TeleOp
+@TeleOp(name="Encoder Tracking", group="misc")
 @Disabled
 public class EncoderTrackingHolonomic extends OpMode {
 

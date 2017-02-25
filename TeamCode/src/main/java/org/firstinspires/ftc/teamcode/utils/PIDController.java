@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.test;
+package org.firstinspires.ftc.teamcode.utils;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
@@ -8,7 +8,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
  * Created by 292486 on 10/26/2016.
  */
 
-public class PIDTest {
+public class PIDController {
 
     private HardwareMap map;
     private DcMotor leftMotor;  //Get the front left and right motors when instantiating a controller
@@ -21,7 +21,7 @@ public class PIDTest {
     private double correction, maxIntegral, maxCorrection ,tolerance;  //Limits and output
     private double lastTime, deltaTime;
 
-    public PIDTest(HardwareMap map, DcMotor motor1, DcMotor motor2){
+    public PIDController(HardwareMap map, DcMotor motor1, DcMotor motor2){
         this.map = map;
         leftMotor = motor1;
         rightMotor = motor2;

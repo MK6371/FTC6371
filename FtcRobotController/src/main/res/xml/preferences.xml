@@ -76,4 +76,68 @@ See https://developer.android.com/guide/topics/ui/settings.html
 
   </PreferenceCategory>
 
+  <PreferenceCategory
+      android:title="MK Config Settings">
+    <PreferenceScreen
+        android:title="Configure">
+
+      <ListPreference
+          android:title="Alliance Color"
+          android:key="mk_color"
+          android:summary="Blue or Red Alliance"
+          android:entries="@array/alliance_colors"
+          android:entryValues="@array/color_values"
+          android:defaultValue="Blue"/>
+
+      <EditTextPreference
+          android:title="Delay Time"
+          android:key="mk_delayTime"
+          android:summary="Time before starting"
+          android:inputType="number"
+          android:defaultValue="5000"/>
+
+      <EditTextPreference
+          android:title="Cap Ball Time"
+          android:key="mk_ballTime"
+          android:summary="How long to drive toward the cap ball"
+          android:inputType="number"
+          android:defaultValue="2500"/>
+
+      <CheckBoxPreference
+          android:title="Shoot Balls"
+          android:key="mk_shootBalls"
+          android:summary="Shoot preloaded balls"
+          android:defaultValue="true"/>
+
+      <EditTextPreference
+          android:title="Shoot Ball Time"
+          android:key="mk_shootTime"
+          android:summary="If shoot balls is TRUE, this controls how long to go forward"
+          android:inputType="number"
+          android:defaultValue="1000"/>
+
+      <EditTextPreference
+          android:title="PID Tuning kp"
+          android:key="mk_kp"
+          android:summary="Tune kp variable"
+          android:inputType="numberDecimal"
+          android:defaultValue="0.005"
+          />
+      <EditTextPreference
+          android:title="PID Tuning ki"
+          android:key="mk_ki"
+          android:summary="Tune ki variable"
+          android:inputType="numberDecimal"
+          android:defaultValue="0.00005"
+          />
+      <EditTextPreference
+          android:title="PID Tuning kd"
+          android:key="mk_kd"
+          android:summary="Tune kd variable"
+          android:inputType="numberDecimal"
+          android:defaultValue="0.001"
+          />
+    </PreferenceScreen>
+  </PreferenceCategory>
+
 </PreferenceScreen>

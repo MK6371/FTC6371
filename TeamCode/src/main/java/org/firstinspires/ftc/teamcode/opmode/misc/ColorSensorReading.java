@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.test;
+package org.firstinspires.ftc.teamcode.opmode.misc;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
@@ -8,7 +8,7 @@ import org.firstinspires.ftc.teamcode.HolonomicRobot;
 /**
  * Created by 292486 on 2/3/2017.
  */
-@TeleOp
+@TeleOp(name="Color Sensor", group="misc")
 public class ColorSensorReading extends OpMode {
 
     HolonomicRobot robot = new HolonomicRobot();

@@ -4,23 +4,22 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.HolonomicRobot;
-import org.firstinspires.ftc.teamcode.utils.Gyro;
+import org.firstinspires.ftc.teamcode.utils.PIDController;
 
 /**
  * Created by 292486 on 1/25/2017.
  */
 
-@Autonomous
+@Autonomous(name="Adafruit Beacon Light", group="autonomous")
 public class BeaconLightTest extends LinearOpMode {
 
     HolonomicRobot robot = new HolonomicRobot();
     private static final double WHITE = 2.63; //TODO
-
-
 
     @Override
     public void runOpMode() throws InterruptedException {
@@ -66,7 +65,7 @@ public class BeaconLightTest extends LinearOpMode {
 
     private void moveDiagonal(boolean blueAlliance)
     {
-        double correction = 0;
+        //double correction = 0;
         double light = 1.5; //priming the while loop
         robot.lightFloor.enableLed(true);
         sleep(1500);
@@ -97,7 +96,7 @@ public class BeaconLightTest extends LinearOpMode {
     {
         double correction = 0;
         ElapsedTime forwardTimer = new ElapsedTime(ElapsedTime.Resolution.MILLISECONDS);
-        PIDTest pidController = new PIDTest(hardwareMap, robot.backLeft, robot.frontLeft);
+        PIDController pidController = new PIDController(hardwareMap, robot.backLeft, robot.frontLeft);
         pidController.setMaxCorrection(0.09);
         pidController.setTuning(0.0025, 0, 0, 0);
         pidController.resetPID();

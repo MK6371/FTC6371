@@ -9,6 +9,7 @@ import com.qualcomm.robotcore.hardware.LightSensor;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.UltrasonicSensor;
 import com.qualcomm.robotcore.util.ElapsedTime;
+import com.qualcomm.robotcore.util.Range;
 
 import org.firstinspires.ftc.teamcode.utils.Gyro;
 
@@ -64,9 +65,9 @@ public class HolonomicRobot {
 
         //gyro = new Gyro(hMap, "gyro");
 
-        sensorRgb = hMap.colorSensor.get("color");
-        hMap.deviceInterfaceModule.get("dim").setDigitalChannelMode(0, DigitalChannelController.Mode.OUTPUT);
-        hMap.deviceInterfaceModule.get("dim").setDigitalChannelState(0, false);
+        //sensorRgb = hMap.colorSensor.get("color");
+        //hMap.deviceInterfaceModule.get("dim").setDigitalChannelMode(0, DigitalChannelController.Mode.OUTPUT);
+        //hMap.deviceInterfaceModule.get("dim").setDigitalChannelState(0, false);
 
         frontLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         frontRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
@@ -125,6 +126,14 @@ public class HolonomicRobot {
      * @param br back right motor value
      */
     public void move(double fl, double fr, double bl, double br){
+        Range.clip(fl, -1, 1); Range.clip(fr, -1, 1); Range.clip(bl, -1, 1); Range.clip(br, -1, 1); //CLIP
+        /*double[] speeds = {fl, fr, bl, br};
+        Arrays.sort(speeds);
+        if(Math.abs(speeds[3]) > 1){
+            for(double speed : speeds){
+                speed /= Math.abs(speeds[3]);
+            }
+        }*/ //SCALE
         frontLeft.setPower((Math.abs(fl) > threshold ? fl : 0));
         frontRight.setPower((Math.abs(fr) > threshold ? fr : 0));
         backLeft.setPower((Math.abs(bl) > threshold ? bl : 0));
@@ -196,6 +205,7 @@ public class HolonomicRobot {
 
     public void tankSmooth(double ly, double ry, double lx, double rx)
     {
-
+        move(ly + lx, ry + rx, ly - lx, ry - rx);   //Why is right side reversed? (positive -> clockwise)
+        //Actually, it's only ry that's opposite. Hm.
     }
 }

@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.opmode.misc;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.util.ElapsedTime;
@@ -10,7 +11,7 @@ import org.firstinspires.ftc.teamcode.HolonomicRobot;
  * Created by 292486 on 11/28/2016.
  */
 
-@TeleOp(name = "Light Sensor Polling")
+@TeleOp(name="Light Sensor", group="misc")
 public class LightSensorPolling extends OpMode {
 
     private HolonomicRobot robot = new HolonomicRobot();

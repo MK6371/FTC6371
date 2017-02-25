@@ -13,7 +13,7 @@ import org.firstinspires.ftc.teamcode.HolonomicRobot;
  * Created by 292486 on 9/20/2016.
  */
 
-@TeleOp(name = "Holonomic Drive", group = "Teleop Drive")
+@TeleOp(name = "Driver Holonomic", group = "teleop")
 public class HolonomicDrive extends OpMode {
 
     HolonomicRobot robot = new HolonomicRobot();
@@ -55,12 +55,12 @@ public class HolonomicDrive extends OpMode {
 
         if(gamepad2.x)
         {
-            robot.shooterRed.setPower(0.75);
-            robot.shooterBlue.setPower(0.75);
+            robot.shooterRed.setPower(-0.75);
+            robot.shooterBlue.setPower(-0.75);
         } else if(gamepad2.a)
         {
-            robot.shooterRed.setPower(1);
-            robot.shooterBlue.setPower(1);
+            robot.shooterRed.setPower(0.75);
+            robot.shooterBlue.setPower(0.75);
         } else {
             robot.shooterRed.setPower(0);
             robot.shooterBlue.setPower(0);

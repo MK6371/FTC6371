@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.test;
 import android.util.Log;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.vuforia.HINT;
@@ -21,7 +22,8 @@ import org.firstinspires.ftc.teamcode.R;
 /**
  * Created by 292486 on 10/19/2016.
  */
-@Autonomous
+@Autonomous(name="Vuforia Test", group="vision")
+@Disabled
 public class VuforiaTest extends LinearOpMode {
 
     VuforiaLocalizer vuforia;
