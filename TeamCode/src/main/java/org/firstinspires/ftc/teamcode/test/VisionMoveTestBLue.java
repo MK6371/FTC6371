@@ -5,24 +5,23 @@ import android.preference.PreferenceManager;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.HolonomicRobot;
-import org.firstinspires.ftc.teamcode.legacycode.PIDControllerLegacy;
 import org.firstinspires.ftc.teamcode.utils.PIDController;
 import org.lasarobotics.vision.android.Cameras;
 import org.lasarobotics.vision.ftc.resq.Beacon;
 import org.lasarobotics.vision.opmode.LinearVisionOpMode;
+import org.lasarobotics.vision.opmode.VisionOpMode;
 import org.lasarobotics.vision.opmode.extensions.CameraControlExtension;
 import org.lasarobotics.vision.util.ScreenOrientation;
 import org.opencv.core.Size;
 
 /**
- * Created by 292486 on 2/24/2017.
+ * Created by 292486 on 2/25/2017.
  */
 
-@Autonomous(name="Vision Move", group="vision")
-public class VisionMoveTest extends LinearVisionOpMode {
+@Autonomous(name="vision both", group="vision")
+public class VisionMoveTestBLue extends LinearVisionOpMode{
 
     private HolonomicRobot robot = new HolonomicRobot();
 
@@ -39,8 +38,8 @@ public class VisionMoveTest extends LinearVisionOpMode {
         this.setCamera(Cameras.SECONDARY);  //Front-facing camera
         this.setFrameSize(new Size(900, 900));  //Frame to analyze (bigger = slower but more accurate)
 
-        enableExtension(Extensions.BEACON);
-        enableExtension(Extensions.ROTATION);   //Corrects screen rotation
+        enableExtension(VisionOpMode.Extensions.BEACON);
+        enableExtension(VisionOpMode.Extensions.ROTATION);   //Corrects screen rotation
         //enableExtension(Extensions.CAMERA_CONTROL);
 
         beacon.setAnalysisMethod(Beacon.AnalysisMethod.FAST);   //Complex, default, realtime
@@ -87,7 +86,7 @@ public class VisionMoveTest extends LinearVisionOpMode {
         {
             robot.move(-lSpeed, 0, 0, rSpeed);
         } else {
-            robot.move(0, -lSpeed, rSpeed, 0);
+            robot.move(0, -lSpeed, rSpeed, 0); // -.5, 0.3
         }
         while ((light > 1.2 && light < 1.9) && opModeIsActive()) {
             light = robot.lightFloor.getRawLightDetected();
@@ -107,6 +106,13 @@ public class VisionMoveTest extends LinearVisionOpMode {
         }
          */
 
+        if(alliance==0) //Correcting light sensor - phone camera offset
+        {
+            robot.move(0.25, -0.25, 0.25, -0.25);
+            sleep(300);
+        }
+        robot.stop();
+
         /*
         *** Read and hit the beacon!
          */
@@ -118,16 +124,20 @@ public class VisionMoveTest extends LinearVisionOpMode {
 
         if (((alliance == 0) && leftBlue) || (!(alliance == 0) && !leftBlue))    //We want to hit left
         {
+            /*
             robot.move(-0.25, 0.25, -0.25, 0.25);
             sleep(300);
-            robot.stop(); //Just go straight. We rainbow toward the left side of the button anyways
+            robot.stop();*/ //Just go straight. We rainbow toward the left side of the button anyways.
+            //********************************************
+            // It's not working for blue side, so we're not going to move to the left
+            //********************************************
             sleep(200);
             robot.move(-0.25, -0.25, 0.25, 0.25);
             sleep(1750);
             robot.stop();
         } else {    //We want to hit right
             robot.move(0.25, -0.25, 0.25, -0.25);
-            sleep(750);
+            sleep(850);
             robot.stop();
             sleep(200);
             robot.move(-0.25, -0.25, 0.25, 0.25);
@@ -139,11 +149,11 @@ public class VisionMoveTest extends LinearVisionOpMode {
         *** Back up before resetting the beacon
          */
         robot.move(0.25, 0.25, -0.25, -0.25);
-        sleep(500);
+        sleep(750);
         robot.stop();
 
         /*
-        *** Prepare control system for moving sideways (forward) to the next beacon
+        *** Prepare control system for moving sideways (forward/backwards) to the next beacon
          */
         robot.frontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         robot.frontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -151,9 +161,13 @@ public class VisionMoveTest extends LinearVisionOpMode {
         robot.frontLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         robot.frontRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         PIDController controller = new PIDController(hardwareMap, robot.frontLeft, robot.frontRight);
-        controller.setTuning(0.001, 0.00005, 0, 0);
+        controller.setTuning(0.001, 0, 0, 0);
 
-        robot.move(0.25, -0.3, 0.3, -0.25);
+        if(alliance==0) {
+            robot.move(-0.25, 0.3, -0.3, 0.25);
+        } else {
+            robot.move(0.25, -0.3, 0.3, -0.25);
+        }
         sleep(750);
 
         /*
@@ -161,12 +175,24 @@ public class VisionMoveTest extends LinearVisionOpMode {
          */
         light = 1.5;
         double correction = controller.getCorrection();
-        while ((light > 1.2 && light < 1.8) && opModeIsActive()) {
+        while ((light > 1.2 && light < 1.9) && opModeIsActive()) {
             light = robot.lightFloor.getRawLightDetected();
             telemetry.addData("Light: ", robot.lightFloor.getRawLightDetected());
+            telemetry.addData("Correction: ", correction);
             telemetry.update();
-            robot.move(0.25 - correction, -0.3 - correction, 0.3 - correction, -0.25 - correction); //PID work pls
+            if(alliance==0) {
+                robot.move(-0.25 + correction, 0.3 + correction, -0.3 + correction, 0.25 + correction); //PID work pls
+            } else {
+                robot.move(0.25 - correction, -0.3 - correction, 0.3 - correction, -0.25 - correction);
+            }
             correction = controller.getCorrection();
+        }
+        robot.stop();
+
+        if(alliance==0) //Correcting light sensor - phone camera offset
+        {
+            robot.move(0.25, -0.25, 0.25, -0.25);
+            sleep(300);
         }
         robot.stop();
 
@@ -181,16 +207,16 @@ public class VisionMoveTest extends LinearVisionOpMode {
 
         if (((alliance == 0) && leftBlue) || (!(alliance == 0) && !leftBlue))    //We want to hit left
         {
-            robot.move(-0.25, 0.25, -0.25, 0.25);
+            /*robot.move(-0.25, 0.25, -0.25, 0.25);
             sleep(300);
-            robot.stop();
+            robot.stop();*/
             sleep(200);
             robot.move(-0.25, -0.25, 0.25, 0.25);
             sleep(2000);    // ***** We have to go a bit farther than the last one, since the robot rainbowed backwards even with PID. Hmmm.
             robot.stop();
         } else {    //We want to hit right
             robot.move(0.25, -0.25, 0.25, -0.25);
-            sleep(750);
+            sleep(850);
             robot.stop();
             sleep(200);
             robot.move(-0.25, -0.25, 0.25, 0.25);
@@ -213,9 +239,9 @@ public class VisionMoveTest extends LinearVisionOpMode {
         waitOneFullHardwareCycle();
         robot.frontLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         robot.frontRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        while(robot.frontLeft.getCurrentPosition() < 1900 && opModeIsActive())
+        robot.move(0.25, 0.25, 0.25, 0.25);
+        while(Math.abs(robot.frontLeft.getCurrentPosition()) < 700 && opModeIsActive())
         {
-            robot.move(0.25, 0.25, 0.25, 0.25);
         }
 
         /*
@@ -224,9 +250,9 @@ public class VisionMoveTest extends LinearVisionOpMode {
         robot.move(0.25, -0.25, 0.25, -0.25);
         if (((alliance == 0) && leftBlue) || (!(alliance == 0) && !leftBlue))    //We want to hit left
         {
-            sleep(1250);
-        } else {    //We want to hit right
             sleep(1750);
+        } else {    //We want to hit right
+            sleep(1250);
         }
         robot.stop();
 

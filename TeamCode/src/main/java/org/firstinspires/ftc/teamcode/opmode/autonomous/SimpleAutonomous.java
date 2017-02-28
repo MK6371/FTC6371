@@ -58,16 +58,16 @@ public class SimpleAutonomous extends LinearOpMode {
             robot.intake.setPower(0);
 
             //Shoot();
-            robot.shooterRed.setPower(.7);
-            robot.shooterBlue.setPower(.7);
+            robot.shooterRed.setPower(-.7);
+            robot.shooterBlue.setPower(-.7);
             sleep(1500);
             robot.shooterRed.setPower(0);
             robot.shooterBlue.setPower(0);
             robot.intake.setPower(-0.5);
             sleep(5000);
             robot.intake.setPower(0);
-            robot.shooterRed.setPower(.7);
-            robot.shooterBlue.setPower(.7);
+            robot.shooterRed.setPower(-.7);
+            robot.shooterBlue.setPower(-.7);
             sleep(1500);
             robot.shooterRed.setPower(0);
             robot.shooterBlue.setPower(0);

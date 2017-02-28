@@ -28,7 +28,7 @@ public class PIDController {
 
         maxIntegral = 500;
         maxCorrection = .25;
-        tolerance = 50;
+        tolerance = 25;
 
         timeController = new ElapsedTime(ElapsedTime.Resolution.MILLISECONDS);  //Keep track of time in miliseconds. When instantiated, timeController.time() is 0
 
